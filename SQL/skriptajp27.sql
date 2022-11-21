@@ -104,3 +104,15 @@ values
 ('Mario','Živković','mario.zivkovic.znr@gmail.com'),
 ('Toni','Stojčević','stojcevict@gmail.com');
 
+
+# 1 - 14
+insert into polaznik (osoba) values
+(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14);
+
+# 15
+insert into osoba (ime,prezime,email)
+values ('Tomislav', 'Jakopec', 'tjakopec@gmail.com');
+
+# 1
+insert into predavac(osoba)
+values (15);
