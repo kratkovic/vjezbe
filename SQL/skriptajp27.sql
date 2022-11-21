@@ -2,7 +2,7 @@
 # Izvođenje naredbi na serveru
 # Otvoriti CMD
 # Zaljepiti sljedeću naredbu bez prvoh hash znaka
-# c:\xampp\mysql\bin\mysql -uroot < C:\Users\dell\Documents\EdunovaJP27\SQL\skriptajp27.sql
+# c:\xampp\mysql\bin\mysql -uroot < C:\Users\dell\Documents\vjezbe\SQL\skriptajp27.sql
 
 drop database if exists edunovajp27;
 create database edunovajp27;
@@ -60,3 +60,28 @@ alter table clan add foreign key (grupa) references grupa(sifra);
 alter table polaznik add foreign key (osoba) references osoba(sifra);
 
 alter table predavac add foreign key (osoba) references osoba(sifra);
+
+
+# inicijalni podaci
+#1
+insert into smjer 
+values (null,'Java programiranje',5999.99,500,true);
+#2
+insert into smjer (sifra,naziv)
+values (null, 'PHP programiranje');
+
+#3
+insert into smjer (sifra,naziv,cijena,upisnina,certificiran)
+values 
+(null,'Serviser', null,null,null);
+
+
+select * from grupa;
+#1
+insert into grupa (naziv,sifra,maksimalnopolaznika,datumpocetka,smjer,predavac)
+values ('JP27',null,20,'2022-11-07',1,null);
+
+
+#2
+insert into grupa(naziv,maksimalnopolaznika,smjer,datumpocetka)
+values ('PP26',20,2,'2022-11-07 19:00:00');
