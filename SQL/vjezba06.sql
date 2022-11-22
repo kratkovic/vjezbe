@@ -26,7 +26,8 @@ create table kustos(
 create table djelo(
     sifra int not null primary key auto_increment,
     autor varchar(50),
-    naziv varchar(50)
+    naziv varchar(50),
+    izlozba int
     );
 
 create table sponzor(
@@ -35,6 +36,6 @@ create table sponzor(
     iznos decimal(18,2)
     );
 
-alter table izlozba add foreign key (djelo) references djelo(sifra);
-alter table kustos add foreign key (izlozba) references izlozba(sifra);
+alter table izlozba add foreign key (kustos) references kustos(sifra);
+alter table djelo add foreign key (izlozba) references izlozba(sifra);
 alter table izlozba add foreign key (sponzor) references sponzor(sifra);
