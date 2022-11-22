@@ -1,5 +1,7 @@
 #zadatak 6
 
+# c:\xampp\mysql\bin\mysql -uroot < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba06.sql
+
 drop database if exists muzej;
 create database muzej;
 use muzej;
@@ -30,10 +32,9 @@ create table djelo(
 create table sponzor(
     sifra int not null primary key auto_increment,
     ime varchar(50),
-    iznos decimal(18,2),
-    izlozba int
+    iznos decimal(18,2)
     );
 
 alter table izlozba add foreign key (djelo) references djelo(sifra);
-alter table izlozba add foreign key (kustos) references kustos(sifra);
-alter table izlozba add foreign key (djelo) references djelo(sifra);
+alter table kustos add foreign key (izlozba) references izlozba(sifra);
+alter table izlozba add foreign key (sponzor) references sponzor(sifra);
