@@ -1,4 +1,4 @@
-
+#zadatak 5
 # c:\xampp\mysql\bin\mysql -uroot < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba05.sql
 
 drop database if exists samostan;
