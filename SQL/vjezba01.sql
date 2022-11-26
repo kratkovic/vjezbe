@@ -1,4 +1,5 @@
 #zadatak 1
+
 # c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba01.sql
 
 

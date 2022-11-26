@@ -1,5 +1,6 @@
 #zadatak 6
 
+
 # c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba06.sql
 
 drop database if exists muzej;
