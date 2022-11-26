@@ -1,5 +1,5 @@
 #zadatak 4
-# c:\xampp\mysql\bin\mysql -uroot < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba04.sql
+# c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba04.sql
 
 
 drop database if exists firmapp23;

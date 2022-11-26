@@ -1,5 +1,5 @@
 #zadatak 5
-# c:\xampp\mysql\bin\mysql -uroot < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba05.sql
+# c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\vjezbe\SQL\vjezba05.sql
 
 drop database if exists samostan;
 create database samostan;
