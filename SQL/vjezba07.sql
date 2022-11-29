@@ -38,7 +38,7 @@ alter table studentskirokovi add foreign key (rok) references rok(sifra);
 insert into kolegij(sifra,naziv,broj_ects_bodova) 
 values (null,'Analiza matemtike',5), 
        (null,'Poslovna informatika',7), 
-       (null,'Informacijske znanosti', 5);
+       (null,'Informacijske znanosti',5);
 
 insert into student(sifra, ime, prezime,oib)
 values(null,'Marko','Marić','14598736521'),
