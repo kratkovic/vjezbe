@@ -101,11 +101,6 @@ values('zuta','58268016158','zelena',1),
 ('roza','44612034946','plava',1),
 ('ljubicasta','18041836596','siva',1);
 
-insert into svekar(bojaociju)
-values('plava'),
-('siva'),
-('smedje');
-
 insert into sestra_svekar(sestra,svekar)
 values(1,1),
 (1,2),(2,2);
@@ -123,7 +118,7 @@ delete from mladic where kuna > 15.78;
 
 select * from zena where hlace like ('%ana%');
 
-select
+select a.asocijalno, f.dukserica, b.hlace 
 from mladic a
 inner join muskarac b on a.muskarac = b.sifra
 inner join zena c on b.zena = c.sifra
