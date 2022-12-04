@@ -123,7 +123,7 @@ from mladic a
 inner join muskarac b on a.muskarac = b.sifra
 inner join zena c on b.zena = c.sifra
 inner join sestru d on c.sestra = d.sifra
-inner join sestra_svekar e on d.sifra = e.svekar
+inner join sestra_svekar e on e.svekar = d.sifra
 inner join svekar f on e.sestra = f.sifra
 where c.hlace like ('%a') and d.haljina like ('%ba')
 order by 3 desc;
