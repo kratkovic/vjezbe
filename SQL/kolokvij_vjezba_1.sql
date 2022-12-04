@@ -90,3 +90,46 @@ alter table mladic add foreign key (muskarac) references muskarac(sifra);
 alter table sestra_svekar add foreign key (svekar) references svekar(sifra);
 
 
+
+insert into muskarac(hlace,bojaociju,modelnaocala)
+values('traperice','zelena',1), 
+('svecane','plava',2),
+('chino','smedja',3);
+
+insert into zena(kratkamajica,jmbag,haljina,sestra)
+values('zuta','58268016158','zelena',1),
+('roza','44612034946','plava',1),
+('ljubicasta','18041836596','siva',1);
+
+insert into svekar(bojaociju)
+values('plava'),
+('siva'),
+('smedje');
+
+insert into sestra_svekar(sestra,svekar)
+values(1,1),
+(1,2),(2,2);
+
+insert into cura(novcica,gustoca,punac)
+values(15.5,15.1,3);
+
+select * from cura;
+
+update cura
+set gustoca = 15.77
+where sifra is not null;
+
+delete from mladic where kuna > 15.78;
+
+select * from zena where hlace like ('%ana%');
+
+select
+from mladic a
+inner join muskarac b on a.muskarac = b.sifra
+inner join zena c on b.zena = c.sifra
+inner join sestru d on c.sestra = d.sifra
+inner join sestra_svekar e on d.sifra = e.svekar
+inner join svekar f on e.sestra = f.sifra
+where c.hlace like ('%a') and d.haljina like ('%ba')
+order by 3 desc;
+
