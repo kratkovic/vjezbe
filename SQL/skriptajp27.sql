@@ -2,53 +2,58 @@
 # Izvođenje naredbi na serveru
 # Otvoriti CMD
 # Zaljepiti sljedeću naredbu bez prvoh hash znaka
-# c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\vjezbe\SQL\skriptajp27.sql
+# c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\EdunovaJP27\SQL\skriptajp27.sql
+
+# primjer s razmakom
+#  c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < "C:\Users\Kiki\Documents\bazezavjezbanje\mjesta.sql"
 
 drop database if exists edunovajp27;
 create database edunovajp27 default charset utf8;
 use edunovajp27;
-
 create table smjer(
     sifra int not null primary key auto_increment,
-    naziv varchar(50),
-    cijena decimal(18,2),
+    naziv varchar(50) not null,
+    cijena decimal(18,2) null, # Ako je null to je jednako kao da ništa nismo napisali
     upisnina decimal(18,2),
     certificiran boolean
 );
 
 create table grupa(
     sifra int not null primary key auto_increment,
-    naziv varchar(50),
-    maksimalnopolaznika int,
+    naziv varchar(50) not null,
+    maksimalnopolaznika int not null,
     datumpocetka datetime,
-    smjer int,
+    smjer int not null,
     predavac int
 );
 
 create table osoba(
     sifra int not null primary key auto_increment,
-    ime varchar(50),
-    prezime varchar(50),
-    email varchar(50),
+    ime varchar(50) not null,
+    prezime varchar(50) not null,
+    email varchar(50) not null,
     oib char(11)    
 );
+
 
 create table polaznik(
     sifra int not null primary key auto_increment,
     brojugovora varchar(20),
-    osoba int
+    osoba int not null
 );
+
 
 create table predavac(
     sifra int not null primary key auto_increment,
     iban varchar(50),
-    osoba int
+    osoba int not null
 );
 
 create table clan(
-    grupa int,
-    polaznik int
+    grupa int not null,
+    polaznik int not null
 );
+
 
 # Vanjski ključevi
 alter table grupa add foreign key (smjer) references smjer(sifra);
@@ -63,28 +68,33 @@ alter table predavac add foreign key (osoba) references osoba(sifra);
 
 
 # inicijalni podaci
-#1
-insert into smjer 
-values (null,'Java programiranje',5999.99,500,true);
-#2
+# najlošija
+# 1 - ovo je šifra smjera koju dodjeli server
+insert into smjer
+values (null,'Java programiranje',5999.99,
+500,true);
+
+# malo bolja varijanta
+# 2
 insert into smjer (sifra,naziv)
-values (null, 'PHP programiranje');
+values (null,'PHP programiranje');
 
-#3
-insert into smjer (sifra,naziv,cijena,upisnina,certificiran)
-values 
-(null,'Serviser', null,null,null);
+# primjer dobre prakse - navesti sve kolone koje unosiš
+# 3
+insert into smjer
+(sifra,naziv,cijena,upisnina,certificiran)
+values
+(null,'Serviser',null,null,null);
 
-
-select * from grupa;
-#1
-insert into grupa (naziv,sifra,maksimalnopolaznika,datumpocetka,smjer,predavac)
+# 1
+insert into grupa (naziv,sifra,maksimalnopolaznika,
+datumpocetka, smjer,predavac)
 values ('JP27',null,20,'2022-11-07',1,null);
 
-
-#2
-insert into grupa(naziv,maksimalnopolaznika,smjer,datumpocetka)
+# 2
+insert into grupa(naziv,maksimalnopolaznika,smjer, datumpocetka)
 values ('PP26',20,2,'2022-11-07 19:00:00');
+
 
 # 1 - 14
 insert into osoba(ime,prezime,email)
@@ -105,20 +115,34 @@ values
 ('Toni','Stojčević','stojcevict@gmail.com');
 
 
+
 # 1 - 14
 insert into polaznik (osoba) values
-(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14);
+(1),(2),(3),(4),(5),(6),(7),(8),(9),
+(10),(11),(12),(13),(14);
+
 
 # 15
 insert into osoba (ime,prezime,email)
-values ('Tomislav', 'Jakopec', 'tjakopec@gmail.com');
+values ('Tomislav','Jakopec',
+'tjakopec@gmail.com');
 
-# 1
+
+# 1 
 insert into predavac(osoba)
 values (15);
 
 
-insert into clan (grupa,polaznik)
-values 
-(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(1,13),(1,14);
 
+insert into clan (grupa,polaznik)
+values
+(1,1),(1,2),(1,3),(1,4),(1,5),
+(1,6),(1,7),(1,8),(1,9),(1,10),
+(1,11),(1,12),(1,13),(1,14);
+
+
+update grupa set 
+datumpocetka='2022-11-07 17:00:00'
+where sifra=1;
+
+delete from smjer where sifra=3;
