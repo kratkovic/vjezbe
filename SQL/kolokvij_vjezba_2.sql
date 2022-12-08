@@ -82,3 +82,19 @@ alter table cura add foreign key (decko) references decko(sifra);
 alter table neprijatelj add foreign key (cura) references cura(sifra);
 alter table brat add foreign key (neprijatelj) references neprijatelj(sifra);
 alter table prijatelj add foreign key (svekar) references svekar(sifra);
+
+
+insert into neprijatelj(majica,haljina,lipa)
+values('plava','zelena',12.5), 
+('zuta','plava',11.4),
+('ljubicasta','zelena',11.5);
+
+insert into cura(haljina,suknja,introvertno)
+values('svecana','zuta',1),
+('svakodnevna','plava',0),
+('radna','zelena',null);
+
+insert into decko_zarucnica(decko,zarucnica)
+values(1,1),
+(1,2),(2,2);
+
