@@ -98,3 +98,18 @@ insert into decko_zarucnica(decko,zarucnica)
 values(1,1),
 (1,2),(2,2);
 
+select a.novcica, f.neprijatelj, e.haljina 
+from zarucnica a
+inner join decko_zarucnica b on a.sifra=b.zarucnica 
+inner join decko c on c.sifra=b.decko 
+inner join cura d on d.decko=c.sifra
+inner join neprijatelj e on e.cura=d.sifra 
+inner join brat f on f.neprijatelj=e.sifra 
+where d.drugiputa is not null and c.vesta like ('%ba%')
+order by 3 desc ;
+
+select a.vesta, a.asocijalno 
+from decko a 
+left  join decko_zarucnica b on b.decko=a.sifra 
+where b.sifra is null; 
+
