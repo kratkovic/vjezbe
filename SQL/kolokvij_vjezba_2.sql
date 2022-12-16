@@ -83,7 +83,6 @@ alter table neprijatelj add foreign key (cura) references cura(sifra);
 alter table brat add foreign key (neprijatelj) references neprijatelj(sifra);
 alter table prijatelj add foreign key (svekar) references svekar(sifra);
 
-
 insert into neprijatelj(majica,haljina,lipa)
 values('plava','zelena',12.5), 
 ('zuta','plava',11.4),
