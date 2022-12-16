@@ -121,7 +121,6 @@ where
 d.lipa !=91 and c.haljina like '%ba%'
 order by e.kuna desc ;
 
-
 select a.haljina, a.lipa 
 from prijatelj a 
 left join prijatelj_brat b on a.sifra=b.brat 
