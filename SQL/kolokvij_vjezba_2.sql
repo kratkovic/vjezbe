@@ -85,12 +85,12 @@ alter table prijatelj add foreign key (svekar) references svekar(sifra);
 
 insert into neprijatelj(majica,haljina,lipa)
 values('plava','zelena',12.5), 
-('zuta','plava',11.4),
+('zuta','crna',11.4),
 ('ljubicasta','zelena',11.5);
 
 insert into cura(haljina,suknja,introvertno)
 values('svecana','zuta',1),
-('svakodnevna','plava',0),
+('svakodnevna','siva',0),
 ('radna','zelena',null);
 
 insert into decko_zarucnica(decko,zarucnica)
