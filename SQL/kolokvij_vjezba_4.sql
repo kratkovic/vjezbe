@@ -84,3 +84,28 @@ alter table zena_mladic add foreign key (zena) references zena(sifra);
 alter table zena_mladic add foreign key (mladic) references mladic(sifra);
 alter table punac add foreign key (ostavljen) references ostavljen(sifra);
 
+
+
+insert into becar(novcica,kratkamajica,bojaociju)
+values(12.5,'plava','zelena'), 
+(11.4,'zuta','plava'),
+(11.5,'ljubicasta','smedja');
+
+
+insert into snasa(haljina,zena)
+values('narandjasta',1),
+('crna',2),
+('bijela',3);
+
+insert into zena_mladic(zena,mladic)
+values(1,1),(2,2),(3,3);
+
+update punac set majica = 'Osijek'
+where sifra is not null;
+
+delete from prijatelj 
+where prsten > 17;
+
+select haljina from snasa 
+where treciputa is null;
+
