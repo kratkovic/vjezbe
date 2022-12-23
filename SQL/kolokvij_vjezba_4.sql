@@ -17,7 +17,6 @@ create table prijatelj(
     becar int not null
 );
 
-
 create table becar(
     sifra int not null primary key auto_increment,
     novcica decimal(14,8),
