@@ -2,7 +2,6 @@
 
 # c:\xampp\mysql\bin\mysql -uroot --default_character_set=utf8 < C:\Users\Kiki\Documents\vjezbe\SQL\kolokvij_vjezba_4.sql
 
-
 drop database if exists vjezba4;
 create database vjezba4;
 use vjezba4;
