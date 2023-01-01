@@ -57,7 +57,6 @@ values(null,'Arena'),
 (null,'Pulaplus'),
 (null,'24sata');
 
-
 insert into izlozba (sifra,naziv,iznos,sponzor,kustos)
 values(null,'Pogon jedistva', 500000.00,1,2),
 (null,'Izazov moderne', 900000.00,1,1);
