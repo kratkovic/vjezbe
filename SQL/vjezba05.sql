@@ -30,7 +30,5 @@ create table sluzba (
 
 alter table sluzba add foreign key (posao) references posao(sifra);
 alter table sluzba add foreign key (svecenik) references svecenik(sifra);
-
-
 alter table svecenik add foreign key (nadredeni) references svecenik(sifra);
 
