@@ -73,7 +73,6 @@ create table ostavljen(
 );
 
 
-
 alter table prijatelj add foreign key (becar) references becar (sifra);
 alter table becar add foreign key (snasa) references snasa(sifra);
 alter table snasa add foreign key (zena) references zena(sifra);
