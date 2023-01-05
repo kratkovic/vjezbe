@@ -64,7 +64,6 @@ create table punac(
     ostavljen int not null
 );
 
-
 create table ostavljen(
     sifra int not null primary key auto_increment,
     modelnaocala varchar(43),
