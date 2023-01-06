@@ -73,7 +73,7 @@ public class Z03_TablicaMnozenjaIme {
 					break;
 				}
 
-				for (int k = 0; k < 31; k++) {
+				for (int z = 0; z < 31; z++) {
 					System.out.print("-");
 				}
 
