@@ -70,11 +70,44 @@ public class E01_ForPetlja {
 		}
 		
 		
-		for (int i=0; i<10; i++) {
-			for (int j=0; j<10; j++) {
+		for (int i=1; i<10; i++) {
+			for (int j=1; j<10; j++) {
 				System.out.print(i*j + " ");
 			}
 			System.out.println();
 		}
+		
+		for(int i=0; i<10; i++) {
+			if (i==3) {
+				continue;
+			}
+			System.out.println(i);
+		}
+		
+		for(int i=0; i<10; i++) {
+			if (i==3) {
+				break;
+			}
+			System.out.println(i);
+		}
+		vanjska:
+		for (int i=1; i<10; i++) {
+			for (int j=1; j<10; j++) {
+				if(j==2) {
+					break vanjska;
+				}
+				System.out.print(i*j + " ");
+			}
+			System.out.println();
+		}
+		
+		
+		for(;;) {
+			System.out.println(Math.random());{
+				
+			}
+			
+		}
+		
 	}
 }
