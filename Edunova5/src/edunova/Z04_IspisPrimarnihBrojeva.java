@@ -4,9 +4,8 @@ import javax.swing.JOptionPane;
 
 public class Z04_IspisPrimarnihBrojeva {
 	public static void main(String[] args) {
-		// Kreirati program koji za dva unesena broja ispisuje sve primarne brojeve
-		// između njih
-
+		// Kreirati program koji za dva unesena broja ispisuje sve primarne brojeve između njih
+	
 		int izmedju = 0;
 		int a = Integer.parseInt(JOptionPane.showInputDialog("Unesi prvi broj"));
 		int b = Integer.parseInt(JOptionPane.showInputDialog("Unesi drugi broj"));
