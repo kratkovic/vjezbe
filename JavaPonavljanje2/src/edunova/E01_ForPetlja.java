@@ -25,6 +25,7 @@ public class E01_ForPetlja {
 			System.out.println(i);
 		}
 
+		
 		// zbroj prvih 100 brojeva
 		int zbroj = 0;
 		for (int i = 1; i <= 100; i = i + 1) {
