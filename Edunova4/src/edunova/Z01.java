@@ -27,5 +27,4 @@ public class Z01 {
 		System.out.println(zbroj);
 	}
 	
-
 }
