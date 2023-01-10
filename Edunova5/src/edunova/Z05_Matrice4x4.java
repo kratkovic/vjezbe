@@ -2,8 +2,9 @@ package edunova;
 
 public class Z05_Matrice4x4 {
 	public static void main(String[] args) {
-
 		// Kreirati program koji unosi dvije matrice 4x4 te ispisuje njihov zbroj
+		
+		
 		int redaka = 4, kolone = 4;
 		int matrica1[][] = { { 1, 3, 4, 6 }, { 2, 4, 3, 5 }, { 3, 4, 5, 7 }, { 4, 2, 5, 6 } };
 		int matrica2[][] = { { 1, 3, 4, 5 }, { 2, 4, 3, 9 }, { 1, 2, 4, 6 }, { 4, 7, 4, 6 } };
