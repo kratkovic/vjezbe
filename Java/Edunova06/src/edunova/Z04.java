@@ -7,18 +7,39 @@ public class Z04 {
 	// zbroj svih parnih brojeva 
 	// u primljenom nizu
 	
-	
-	public static int zbroji(int[] brojevi) {
-		//zbrojiti i vratiti 
-		// sve brojeve u nizu brojevi
-		int zbroj=0;
-		for(int i: brojevi) {
-			if(i%2!=0) {
+	public static int zbroj(int[] brojevi) {
+		int zbroj = 0;
+		for(int u: brojevi) {
+			if (u%2!=0) {
 				continue;
 			}
-			zbroj+=i;
+			zbroj +=u;
 		}
 		return zbroj;
 	}
 	
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public static int zbroji(int[] brojevi) {
+//		//zbrojiti i vratiti 
+//		// sve brojeve u nizu brojevi
+//		int zbroj=0;
+//		for(int i: brojevi) {
+//			if(i%2!=0) {
+//				continue;
+//			}
+//			zbroj+=i;
+//		}
+//		return zbroj;
+//	}
+//	
+//}
