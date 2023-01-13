@@ -43,7 +43,8 @@ public class E02_KoristenjeMetoda {
 		System.out.println(
 				E04_Rekurzija.zbroj(100)
 				);
-		
+		System.out.println(Z05.decimala(3.14, 1.12));
+		System.out.println(Z05.decimala(2.78, 0.30));
 	}
 	
 }
