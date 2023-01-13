@@ -7,11 +7,27 @@ public class Z03 {
 	// Metoda vraća ukupan zbroj znakova
 	// primljenih imena i prezimena
 	
-	public static int zbroji(String ime, String prezime) {
-		
+	public static int podaci(String ime, String prezime) {
 		return ime.length() + prezime.length();
 	}
 	
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public static int zbroji(String ime, String prezime) {
+		
+//		return ime.length() + prezime.length();
+//	}
+	
 
 	
-}
+//}

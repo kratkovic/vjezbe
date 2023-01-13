@@ -33,9 +33,9 @@ public class E02_KoristenjeMetoda {
 				);
 		
 		
-		int ij = Z03.zbroji("Tom","Mat");
+		int ip = Z03.podaci("Kristijan","Ratkovic");
 		
-		System.out.println(ij);
+		System.out.println(ip);
 		
 		
 		//E04_Rekurzija.stackoverflow();

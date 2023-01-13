@@ -8,41 +8,49 @@ public class Z02 {
 	// unos broja između 1 i 10
 	// te vraća ispravno unesen broj
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static int broj() {
-		int i;
+		int z;
 		while(true) {
-			i=Integer.parseInt(
-					JOptionPane.showInputDialog("Unesi broj između 1 i 10")
-					);
-			if(i>=1 && i<=10) {
-				return i;
+			z = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj između 1 i 10"));
+			if(z>=1 && z<=10) {
+				return z;
 			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//public static int broj() {
+//		int i;
+//		while(true) {
+//			i=Integer.parseInt(
+//					JOptionPane.showInputDialog("Unesi broj između 1 i 10")
+//					);
+//			if(i>=1 && i<=10) {
+//				return i;
+//			}
 			//break; - ovo se može i obrisati
 		}
 		
 		//return 0;- ovo se može i obrisati
-	}
+//	}
 	
-}
+//}
