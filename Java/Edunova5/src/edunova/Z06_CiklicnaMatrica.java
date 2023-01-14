@@ -3,52 +3,56 @@ package edunova;
 import javax.swing.JOptionPane;
 
 public class Z06_CiklicnaMatrica {
+	public static void main(String[] args) {
 
-	public static void ciklicnaMatrica(int[][] arr) {
-		int redak = arr.length;
-		int kolona = arr[0].length;
-		
-		int m  = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj redova"));
-		int n =  Integer.parseInt(JOptionPane.showInputDialog("Unesi broj stupaca"));
-		
-		int gore = 0, dolje = redak -1, lijevo = 0, desno = kolona - 1;
-		
-		int niz = 1;
-		
-		while(dolje<=gore && desno<=lijevo) {
-			if (niz == 1) {
-				for (int i = desno; i<=lijevo; i++) {
-					System.out.print(arr[dolje][i] + " ");
-				}
-				++dolje;
-				niz = 2;
-				
+		int broj = 1;
+		int r = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj redova"));
+		int s = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj stupaca"));
+
+		int mat[][] = new int[r][s];
+
+		int PocRed = 0;
+		int KrajRed = r - 1;
+		int PocStupac = 0;
+		int KrajStupac = s - 1;
+
+		while (PocRed < KrajRed && PocStupac < KrajStupac) {
+			for (int i = PocStupac; i < KrajStupac; ++i) {
+				mat[PocRed][i] = broj++;
+
 			}
-			else if (niz ==2) {
-				for(int i = dolje; i<=gore; ++i ) {
-					System.out.print(arr[i][lijevo] + " ");
-				}
-				
-				--lijevo;
-				niz=3;
+			PocRed++;
+
+			for (int i = PocRed; i < KrajRed; ++i) {
+				mat[i][KrajStupac] = broj++;
+
 			}
-			else if (niz == 3) {
-				for(int i = lijevo; i>=desno; --i) {
-					System.out.print(arr[gore][i] + " ");
+			KrajStupac--;
+
+			if (PocRed < KrajRed) {
+				for (int i = KrajStupac; i > PocStupac; --i) {
+					mat[KrajRed][i] = broj++;
+
 				}
-				--gore;
-				niz = 4;
+
+				KrajRed--;
+
+				if (PocStupac < KrajStupac) {
+					for (int i = KrajRed; i >= PocRed; --i) {
+						mat[i][PocStupac] = broj++;
+
+					}
+					PocStupac++;
+				}
+
 			}
-			else if (niz == 4) {
-				for (int i = gore; i>=dolje; --i) {
-					System.out.print(arr[i][desno]+ " ");
-				}
-				++desno;
-				niz = 1;
+		}
+		for (int i = 0; i < r; i++) {
+			for (int j = 0; j < s; j++) {
+				System.out.println(mat[i][j] + " ");
 			}
 			System.out.println();
 		}
-		
-	
+
 	}
 }
