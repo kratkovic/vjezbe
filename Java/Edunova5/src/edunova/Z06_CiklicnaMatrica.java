@@ -8,8 +8,8 @@ public class Z06_CiklicnaMatrica {
 		int redak = arr.length;
 		int kolona = arr[0].length;
 		
-		int a  = Integer.parseInt(JOptionPane.showInputDialog("Unesi prvi broj"));
-		int b = Integer.parseInt(JOptionPane.showInputDialog("Unesi drugi broj"));
+		int m  = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj redova"));
+		int n =  Integer.parseInt(JOptionPane.showInputDialog("Unesi broj stupaca"));
 		
 		int gore = 0, dolje = redak -1, lijevo = 0, desno = kolona - 1;
 		
