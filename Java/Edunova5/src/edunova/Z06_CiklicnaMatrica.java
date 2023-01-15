@@ -11,6 +11,7 @@ public class Z06_CiklicnaMatrica {
 
 		int mat[][] = new int[r][s];
 
+		
 		int PocRed = 0;
 		int KrajRed = r - 1;
 		int PocStupac = 0;
