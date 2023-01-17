@@ -10,8 +10,7 @@ public class Z01 {
 	public static void main(String[] args) {
 		int suma=0;
 		
-		
-		int ukupnoPredmeta = Pomocno.ucitajCijeliPozitivniBroj(
+	    int ukupnoPredmeta = Pomocno.ucitajCijeliPozitivniBroj(
 				"Unesite ukupan broj predmeta za koji želite prosjek");
 		for(int i=0;i<ukupnoPredmeta;i++) {
 			//suma+=Pomocno.ucitajOcjenu("Unesi ocjenu");
