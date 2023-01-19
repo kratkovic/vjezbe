@@ -19,7 +19,6 @@ public class Z01 {
 					1, 5);
 		}
 		
-		
 		System.out.println(suma/(float)ukupnoPredmeta);
 	}
 }
