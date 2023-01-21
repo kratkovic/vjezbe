@@ -58,7 +58,7 @@ public class Z06_CiklicnaMatrica {
 		
 		for (int i = 0; i < r; i++) {
 			for (int z = 0; z < s; z++) {
-				System.out.print(mat[i][z] + "   ");
+				System.out.print("   " + mat[i][z]);
 			}
 			System.out.println();
 		}
