@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Z06_CiklicnaMatrica {
 	public static void main(String[] args) {
+		
 		int broj = 1;
 		int r = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj redova"));
 		int s = Integer.parseInt(JOptionPane.showInputDialog("Unesi broj stupaca"));
