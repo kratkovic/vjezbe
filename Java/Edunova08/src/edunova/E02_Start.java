@@ -57,13 +57,27 @@ public class E02_Start {
 				kreirajSmjer(1, "PHP programiranje", 
 						5999.99f, 500, false));
 		
+			
 		// zadaci
 		// Ispišite JP27
 		// Ispišite PHP programiranje
 		// Ispišite zbroj cijena oba smjera
 		
-		
-		
+		System.out.println(jp27.getNaziv());
+	    System.out.println(pp26.getNaziv());
+	    System.out.println(jp27.getSmjer().getCijena()+pp26.getSmjer().getCijena());
+	    
+	    
+	    
+	    Racunalo r1 = kreirajRacunalo(1, "Skupo računalo", 1202.23, 'A', false);
+	    Racunalo r2 = kreirajRacunalo(1, "Jeftino racunalo", 200.20, 'D', true);
+	    
+	    Racunalo [] racunala = new Racunalo [2];
+	    racunala [0] = r1;
+	    racunala [1] = r2;
+	    
+	   System.out.println(r1.getNaziv());
+
 	}
 	
 	private static Osoba kreirajOsobu(
@@ -100,4 +114,22 @@ public class E02_Start {
 		return g;
 	}
 	
-}
+	private static Racunalo kreirajRacunalo(int sifra, String naziv, double cijena, char razred, boolean ukraden) {
+		Racunalo r = new Racunalo();
+		r.setSifra(sifra);
+		r.setNaziv(naziv);
+		r.setCijena(cijena);
+		r.setRazred(razred);
+		r.setUkraden(ukraden);
+		return r;
+	}
+
+
+	}
+	  
+	
+	
+	
+	
+
+
