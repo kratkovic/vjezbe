@@ -5,7 +5,7 @@ import java.util.Date;
 public class Racun {
 	private Date datum;
 	private double iznos;
-	private int kupac;
+	private Kupac kupac;
 	public Date getDatum() {
 		return datum;
 	}
@@ -18,11 +18,13 @@ public class Racun {
 	public void setIznos(double iznos) {
 		this.iznos = iznos;
 	}
-	public int getKupac() {
+	public Kupac getKupac() {
 		return kupac;
 	}
-	public void setKupac(int kupac) {
+	public void setKupac(Kupac kupac) {
 		this.kupac = kupac;
 	}
+
+
 
 }
