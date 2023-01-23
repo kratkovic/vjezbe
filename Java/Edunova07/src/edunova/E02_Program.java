@@ -11,8 +11,10 @@ public class E02_Program {
 //			suma+=Pomocno.ucitajCijeliBroj(
 //					"Unesi " + (i+1) + ". broj"
 //					, "Nisi dobro unio cijeli broj");
+			
 			suma+=Pomocno.ucitajCijeliBroj();
 		}
+		
 		System.out.println(suma);
 		
 	}
