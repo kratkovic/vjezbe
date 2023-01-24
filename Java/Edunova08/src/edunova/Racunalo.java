@@ -6,6 +6,8 @@ public class Racunalo {
       private double cijena;
       private char razred;
       private boolean ukraden;
+      
+      
 	public int getSifra() {
 		return sifra;
 	}
