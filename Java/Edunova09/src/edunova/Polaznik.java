@@ -22,8 +22,6 @@ public class Polaznik extends Osoba {
 
 
 
-
-
 	public String getBrojUgovora() {
 		/*protected u nadklasi*/
 		status=1;
