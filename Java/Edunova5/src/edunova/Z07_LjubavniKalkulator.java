@@ -40,7 +40,9 @@ public class Z07_LjubavniKalkulator {
 					brojac++;
 				}
 			}
+			brojevi[i] = brojac;
 		}
+		
 		 
 	 }
 	
