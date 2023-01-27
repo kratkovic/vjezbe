@@ -20,7 +20,6 @@ public class Z07_LjubavniKalkulator {
 
 	}
 	 
-
 	public static int [] brojSlova(String ime1, String ime2) {
 		 
 		String zajedno = ime1 + ime2;
