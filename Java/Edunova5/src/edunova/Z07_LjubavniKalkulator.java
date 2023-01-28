@@ -48,5 +48,5 @@ public class Z07_LjubavniKalkulator {
 	
 	private static int[] ljubav(int[] brojSlova) {
 		
-		return null;
+		
 }
