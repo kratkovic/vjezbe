@@ -8,21 +8,21 @@ public class Z07_LjubavniKalkulator {
 
 	public static void main(String[] args) {
 
-		String ime1 = JOptionPane.showInputDialog("Unesi svoje ime");
-		String ime2 = JOptionPane.showInputDialog("Unesi ime simpatije");
+		String ime = JOptionPane.showInputDialog("Unesi svoje ime");
+		String simpatija = JOptionPane.showInputDialog("Unesi ime simpatije");
 
 		String broj = "";
 
-		for (int i : ljubav(brojSlova(ime1, ime2))) {
+		for (int i : ljubav(brojSlova(ime, simpatija))) {
 			broj += i;
 		}
-		System.out.println(ime1 + " i " + ime2 + " se vole " + broj + "%");
+		System.out.println(ime + " i " + simpatija + " se vole " + broj + "%");
 
 	}
 
-	public static int [] brojSlova(String ime1, String ime2) {
+	public static int [] brojSlova(String ime, String simpatija) {
 		 
-		String zajedno = ime1 + ime2;
+		String zajedno = ime + simpatija;
 		
 		int brojac;
 		
@@ -46,10 +46,10 @@ public class Z07_LjubavniKalkulator {
 		
 		System.out.println(Arrays.toString(brojevi));
 		
-		if (ime1.length() >= ime2.length()) {
-			int[] prviUpis = new int[ime1.length()];
-			for (int i = 0, index = 0; index < ime1.length(); index++, i++) {
-				if (index >= ime2.length()) {
+		if (ime.length() >= simpatija.length()) {
+			int[] prviUpis = new int[ime.length()];
+			for (int i = 0, index = 0; index < ime.length(); index++, i++) {
+				if (index >= simpatija.length()) {
 					prviUpis[index] = 0 + brojevi[brojevi.length - (1 + i)];
 				} else {
 					prviUpis[index] = brojevi[i] + brojevi[brojevi.length - (1 + i)];
@@ -65,9 +65,9 @@ public class Z07_LjubavniKalkulator {
 		}
 
 		else {
-			int[] prviUpis = new int[ime2.length()];
-			for (int i = 0, index = 0; index < ime2.length(); index++, i++) {
-				if (index >= ime1.length()) {
+			int[] prviUpis = new int[simpatija.length()];
+			for (int i = 0, index = 0; index < simpatija.length(); index++, i++) {
+				if (index >= ime.length()) {
 					prviUpis[index] = 0 + brojevi[brojevi.length - (1 + i)];
 				} else {
 					prviUpis[index] = brojevi[i] + brojevi[brojevi.length - (1 + i)];
