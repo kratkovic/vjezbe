@@ -28,7 +28,6 @@ public class Grupa extends Entitet {
 
 
 
-
 	public String getNaziv() {
 		return naziv;
 	}
