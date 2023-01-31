@@ -1,5 +1,7 @@
 package edunova;
 
+
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Pomocno {
@@ -34,7 +36,35 @@ public class Pomocno {
 				continue;
 			}
 			return s;
+		}
+		
 		}	
-	}
-	
+		
+		public static BigDecimal unosNovca(String poruka) {
+			  try (Scanner input = new Scanner(System.in)) {
+			        System.out.print(poruka);
+			        String unos = input.nextLine();
+			        try {
+			            BigDecimal uneseniIznos = new BigDecimal(unos);
+			            System.out.println("Uneseni iznos: " + uneseniIznos + "€");
+
+			            System.out.print("Unesite upisninu: ");
+			            unos = input.nextLine();
+			            try {
+			                BigDecimal unesenaUpisnina = new BigDecimal(unos);
+			                System.out.println("Unesena upisnina: " + unesenaUpisnina + "€");
+			                return uneseniIznos.add(unesenaUpisnina);
+			            } catch (NumberFormatException e) {
+			                System.out.println("Unesena upisnina nije ispravna.");
+			                return null;
+			            }
+			        } catch (NumberFormatException e) {
+			            System.out.println("Uneseni iznos nije ispravan.");
+			            return null;
+			}
+			}
+		}
 }
+	
+
+	
