@@ -48,7 +48,7 @@ public class Pomocno {
 			            BigDecimal uneseniIznos = new BigDecimal(unos);
 			            System.out.println("Uneseni iznos: " + uneseniIznos + "€");
 
-			            System.out.print("Unesite upisninu: ");
+			            System.out.print("Unesi cijenu upisnine: ");
 			            unos = input.nextLine();
 			            try {
 			                BigDecimal unesenaUpisnina = new BigDecimal(unos);
