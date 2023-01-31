@@ -72,7 +72,8 @@ public class Smjerovi {
 		Smjer s = new Smjer();
 		s.setSifra(Pomocno.unosBrojRaspon("Unesi šifru smjera: ", 1, Integer.MAX_VALUE));
 		s.setNaziv(Pomocno.unosTeksta("Unesi naziv smjera: "));
-		//nastaviti
+		s.setCertificiran(false);
+	
 		return s;
 	}
 
