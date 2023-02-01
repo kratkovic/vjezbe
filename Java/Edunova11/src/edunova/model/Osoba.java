@@ -12,8 +12,7 @@ public abstract class Osoba extends Entitet {
 	}
 	
 	
-	
-	
+		
 	public Osoba(int sifra, String ime, String prezime, String oib, String email) {
 		super(sifra);
 		this.ime = ime;
@@ -21,7 +20,6 @@ public abstract class Osoba extends Entitet {
 		this.oib = oib;
 		this.email = email;
 	}
-
 
 
 
