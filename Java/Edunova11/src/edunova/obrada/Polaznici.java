@@ -6,6 +6,7 @@ import java.util.List;
 import edunova.Pomocno;
 import edunova.Start;
 import edunova.model.Polaznik;
+import edunova.model.Smjer;
 
 public class Polaznici {
 	
@@ -19,6 +20,7 @@ public class Polaznici {
 		super();
 		this.start = start;
 		polaznici = new ArrayList<>();
+		testPodaci();
 	}
 	
 	
@@ -27,8 +29,19 @@ public class Polaznici {
 		super();
 		this.polaznici = polaznici;
 		this.start = start;
+		testPodaci();
 	}
 	
+	private void testPodaci() {
+		if(Pomocno.DEV) {
+			polaznici.add(new Polaznik(1,"Josip","Balog","52658425322","jbalog@gmail.com","2023/1"));
+			polaznici.add(new Polaznik(2, "Ana", "Majić", "15252525252", "amajic@gmail.com", "2023/56"));
+		}
+		
+	}
+
+
+
 	public void izbornik() {
 		System.out.println("");
 		System.out.println("Polaznik izbornik");
@@ -44,7 +57,7 @@ public class Polaznici {
 	private void odabirIzbornika() {
 		switch(Pomocno.unosBrojRaspon("Odaberi opciju: ", 1, 5)) {
 		case 1:
-			//pregled();
+			pregled(true);
 			break;
 		case 2:
 			//unosNovog();
@@ -53,6 +66,19 @@ public class Polaznici {
 			start.glavniIzbornik();
 		}
 		
+	}
+	
+	public void pregled(boolean prikaziIzbornik) {
+		System.out.println("\nPolaznici u aplikaciji");
+		int rb = 1;
+		for (Polaznik p : polaznici) {
+			System.out.println(rb++ + ". " + p);
+		}
+		System.out.println("---------");
+		if (prikaziIzbornik) {
+			izbornik();
+		}
+
 	}
 
 

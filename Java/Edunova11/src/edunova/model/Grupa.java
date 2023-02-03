@@ -18,7 +18,6 @@ public class Grupa extends Entitet{
 	}
 	
 	
-	
 	public Grupa(int sifra, String naziv, Smjer smjer, Predavac predavac, Date datumPocetka, List<Polaznik> polaznici) {
 		super(sifra);
 		this.naziv = naziv;
@@ -58,6 +57,9 @@ public class Grupa extends Entitet{
 		this.polaznici = polaznici;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return naziv + " (" + smjer.getNaziv() + "), " +  polaznici.size() + " polaznika";
+	}
 	
 }
