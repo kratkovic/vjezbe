@@ -56,9 +56,6 @@ public class Start {
 	}
 
 	
-
-	
-
 	private void pozdravnaPoruka() {
 		System.out.println("Dobrodošli u Edunova terminal aplikaciju");
 		
