@@ -5,6 +5,7 @@
 package edunova;
 
 import edunova.util.PocetniInsert;
+import edunova.util.PocetniInsertServis;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Start {
 
     public static void main(String[] args) {
         PocetniInsert.izvedi();
+        PocetniInsertServis.izvedi();
       
     }
 }
