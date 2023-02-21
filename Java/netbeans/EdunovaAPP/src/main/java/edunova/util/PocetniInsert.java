@@ -9,10 +9,7 @@ import edunova.model.Osoba;
 import java.math.BigDecimal;
 import org.hibernate.Session;
 
-/**
- *
- * @author Kiki
- */
+
 public class PocetniInsert {
     
     public static void izvedi(){
