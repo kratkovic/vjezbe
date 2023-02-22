@@ -4,18 +4,21 @@
  */
 package edunova.util;
 
-
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-
 /**
  *
- * @author Kiki
+ * @author dell
  */
+
+// https://www.geeksforgeeks.org/singleton-class-java/
+
+// ostalo čitati na https://sourcemaking.com/design_patterns
+//Singleton
 public class HibernateUtil {
     
-    private static Session session = null;
+    private static Session session=null;
     
     protected HibernateUtil(){
         
@@ -23,9 +26,10 @@ public class HibernateUtil {
     
     public static Session getSession(){
         if(session==null){
-            session= new Configuration().configure().buildSessionFactory().openSession();
-            
+            //konstruirati ga
+            session = new Configuration().configure().buildSessionFactory().openSession();
         }
         return session;
     }
+    
 }
