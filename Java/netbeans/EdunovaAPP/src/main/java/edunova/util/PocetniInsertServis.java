@@ -14,6 +14,7 @@ public class PocetniInsertServis {
         Session session = HibernateUtil.getSession();
         Faker faker = new Faker();
 
+
         Servis s;
         session.beginTransaction();
         for(int i =0; i<100;i++){
