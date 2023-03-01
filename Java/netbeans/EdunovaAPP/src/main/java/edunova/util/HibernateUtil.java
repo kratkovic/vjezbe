@@ -7,7 +7,10 @@ package edunova.util;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
-
+/**
+ *
+ * @author dell
+ */
 
 // https://www.geeksforgeeks.org/singleton-class-java/
 
