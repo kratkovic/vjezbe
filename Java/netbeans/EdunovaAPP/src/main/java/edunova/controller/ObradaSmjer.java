@@ -9,7 +9,10 @@ import edunova.util.EdunovaException;
 import java.math.BigDecimal;
 import java.util.List;
 
-
+/**
+ *
+ * @author dell
+ */
 public class ObradaSmjer extends Obrada<Smjer>{
 
     @Override
