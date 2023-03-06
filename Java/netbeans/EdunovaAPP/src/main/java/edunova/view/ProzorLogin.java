@@ -45,6 +45,7 @@ public class ProzorLogin extends javax.swing.JFrame {
             lblPoruka.setText("Neispravna kombinacija email i lozinka");
             return;
         }
+        Aplikacija.OPERATER=o;
 
         new ProzorIzbornik().setVisible(true);
         dispose();

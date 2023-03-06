@@ -18,7 +18,10 @@ public class ObradaSmjer extends Obrada<Smjer>{
     @Override
     public List<Smjer> read() {
         // https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html
-       return session.createQuery("from Smjer", Smjer.class).list();
+       return session.createQuery(
+               "from Smjer order by naziv", 
+               Smjer.class)
+               .list();
     }
 
     @Override

@@ -25,6 +25,8 @@ public class Operater extends Osoba{
         this.lozinka = lozinka;
     }
     
-    
+    public String getImePrezime(){
+        return getIme() + " " + getPrezime();
+    }
     
 }
