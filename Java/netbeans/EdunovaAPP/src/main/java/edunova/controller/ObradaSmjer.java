@@ -4,6 +4,7 @@
  */
 package edunova.controller;
 
+import edunova.model.Grupa;
 import edunova.model.Smjer;
 import edunova.util.EdunovaException;
 import java.math.BigDecimal;
@@ -41,7 +42,25 @@ public class ObradaSmjer extends Obrada<Smjer>{
 
     @Override
     protected void kontrolaBrisanje() throws EdunovaException {
-        
+        if(entitet.getGrupe()!=null &&
+                !entitet.getGrupe().isEmpty()){
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append("Smjer ");
+            sb.append(entitet.getNaziv());
+            sb.append(" se ne može obrisati jer ima grupe:");
+            sb.append("\n");
+            int b=0;
+            for(Grupa g : entitet.getGrupe()){
+                sb.append(++b);
+                sb.append(". ");
+                sb.append(g.getNaziv());
+                sb.append("\n");
+            }
+            sb.append("--------");
+            
+            throw new EdunovaException(sb.toString());
+        }
     }
     
     protected void kontrolaCijena() throws EdunovaException {
