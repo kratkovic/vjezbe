@@ -7,10 +7,7 @@ package edunova.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
-/**
- *
- * @author dell
- */
+
 @Entity
 public class Operater extends Osoba{
     
