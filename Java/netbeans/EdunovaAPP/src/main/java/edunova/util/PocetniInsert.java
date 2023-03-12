@@ -17,10 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import org.hibernate.Session;
 
-/**
- *
- * @author dell
- */
+
 public class PocetniInsert {
 
     private static final int BROJ_SMJEROVA = 15;
