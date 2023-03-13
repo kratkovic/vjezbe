@@ -16,8 +16,40 @@ public class ObradaPolaznik extends ObradaOsoba<Polaznik>{
 
     @Override
     public List<Polaznik> read() {
-       return session.createQuery("from Polaznik", 
+       return session.createQuery("from Polaznik order by prezime, ime", 
                Polaznik.class).list();
+    }
+    
+    public List<Polaznik> read(String uvjet) {
+        uvjet=uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+       return session.createQuery("from Polaznik "
+               + " where concat(ime,' ',prezime,' ',ime) "
+               + " like :uvjet "
+               + " order by prezime, ime ", 
+               Polaznik.class)
+               .setParameter("uvjet", uvjet)
+               .setMaxResults(12)
+               .list();
+    }
+    
+    public List<Polaznik> read(String uvjet, 
+            boolean traziOdPocetkaImena) {
+        uvjet=uvjet.trim();
+        if(traziOdPocetkaImena){
+            uvjet = uvjet + "%";
+        }else{
+            uvjet = "%" + uvjet + "%";
+        }
+        
+       return session.createQuery("from Polaznik "
+               + " where concat(ime,' ',prezime,' ',ime) "
+               + " like :uvjet "
+               + " order by prezime, ime ", 
+               Polaznik.class)
+               .setParameter("uvjet", uvjet)
+               .setMaxResults(12)
+               .list();
     }
 
     @Override

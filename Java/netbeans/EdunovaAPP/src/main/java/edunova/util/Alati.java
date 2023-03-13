@@ -11,7 +11,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import us.codecraft.xsoup.Xsoup;
 
-
+/**
+ *
+ * @author dell
+ */
 public class Alati {
 
     public static String dovuciOib() {

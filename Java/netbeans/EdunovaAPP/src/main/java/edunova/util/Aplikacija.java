@@ -6,7 +6,10 @@ package edunova.util;
 
 import edunova.model.Operater;
 
-
+/**
+ *
+ * @author dell
+ */
 public class Aplikacija {
     
     public static final String NAZIV_APP="Edunova APP";
