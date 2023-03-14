@@ -10,10 +10,7 @@ import edunova.util.Aplikacija;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author dell
- */
+
 public class ProzorPolaznik extends javax.swing.JFrame {
 
     
