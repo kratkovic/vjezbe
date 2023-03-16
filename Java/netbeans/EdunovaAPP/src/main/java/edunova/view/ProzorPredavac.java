@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Kiki
+ * @author dell
  */
-public class ProzorPredavac 
-        extends javax.swing.JFrame 
-implements EdunovaViewSucelje{
+public class ProzorPredavac
+        extends javax.swing.JFrame
+        implements EdunovaViewSucelje {
     
     private ObradaPredavac obrada;
 
@@ -28,20 +28,21 @@ implements EdunovaViewSucelje{
     public ProzorPredavac() {
         initComponents();
         obrada = new ObradaPredavac();
-        
          setTitle(Aplikacija.NAZIV_APP + ": " + 
                 Aplikacija.OPERATER.getImePrezime() + 
                 ": Predavači");
         ucitaj();
     }
-
-   public void ucitaj() {
+    
+    @Override
+    public void ucitaj() {
         DefaultListModel<Predavac> m
                 = new DefaultListModel<>();
         m.addAll(obrada.read());
         lstPodaci.setModel(m);
         lstPodaci.repaint();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,11 +58,11 @@ implements EdunovaViewSucelje{
         txtIme = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtPrezime = new javax.swing.JTextField();
-        txtOib = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        txtOIB = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        btnDovuciOib = new javax.swing.JButton();
+        btnDovuciOIB = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtIban = new javax.swing.JTextField();
         btnDodaj = new javax.swing.JButton();
@@ -86,10 +87,10 @@ implements EdunovaViewSucelje{
 
         jLabel4.setText("Email");
 
-        btnDovuciOib.setText("O");
-        btnDovuciOib.addActionListener(new java.awt.event.ActionListener() {
+        btnDovuciOIB.setText("O");
+        btnDovuciOIB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDovuciOibActionPerformed(evt);
+                btnDovuciOIBActionPerformed(evt);
             }
         });
 
@@ -109,7 +110,7 @@ implements EdunovaViewSucelje{
             }
         });
 
-        btnObrisi.setText("Obrisi");
+        btnObrisi.setText("Obriši");
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObrisiActionPerformed(evt);
@@ -122,48 +123,48 @@ implements EdunovaViewSucelje{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIban)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPrezime, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtIme, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(txtIme))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addGap(167, 167, 167))
-                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDovuciOib))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnDodaj)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnPromjeni)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnObrisi)
-                .addGap(62, 62, 62))
+                                .addGap(165, 165, 165))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtOIB)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnDovuciOIB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtIban, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnPromjeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -176,8 +177,8 @@ implements EdunovaViewSucelje{
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDovuciOib))
+                            .addComponent(txtOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDovuciOIB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,13 +187,14 @@ implements EdunovaViewSucelje{
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtIban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
-                            .addComponent(btnPromjeni))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnObrisi)
-                .addGap(12, 12, 12))
+                            .addComponent(btnPromjeni))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnObrisi))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         pack();
@@ -210,99 +212,93 @@ implements EdunovaViewSucelje{
         napuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    private void btnDovuciOibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDovuciOibActionPerformed
-        txtOib.setText(Alati.dovuciOib());
-    }//GEN-LAST:event_btnDovuciOibActionPerformed
+    private void btnDovuciOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDovuciOIBActionPerformed
+        txtOIB.setText(Alati.dovuciOib());
+    }//GEN-LAST:event_btnDovuciOIBActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Predavac());
         napuniModel();
         try {
             obrada.create();
-            
             ucitaj();
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(
-                getRootPane(),
-                ex.getPoruka());
+                    getRootPane(),
+                    ex.getPoruka());
         }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         if (lstPodaci.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(
-                getRootPane(),
-                "Prvo odaberite polaznika");
+                    getRootPane(),
+                    "Prvo odaberite polaznika");
             return;
         }
-
+        
         napuniModel();
         try {
             obrada.update();
-            
             ucitaj();
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(
-                getRootPane(),
-                ex.getPoruka());
+                    getRootPane(),
+                    ex.getPoruka());
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
         if (lstPodaci.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(
-                getRootPane(),
-                "Prvo odaberite smjer");
+                    getRootPane(),
+                    "Prvo odaberite polaznik");
             return;
         }
-
+        
         if (JOptionPane.showConfirmDialog(
-            getRootPane(),
-            "Sigurno obrisati " + obrada.getEntitet().getImePrezime() + "?",
-            "Brisanje",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
-        return;
+                getRootPane(),
+                "Sigurno obrisati " + obrada.getEntitet().getImePrezime() + "?",
+                "Brisanje",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
+            return;
         }
-
+        
         try {
             obrada.delete();
             ucitaj();
         } catch (EdunovaException ex) {
             JOptionPane.showMessageDialog(
-                getRootPane(),
-                ex.getPoruka());
+                    getRootPane(),
+                    ex.getPoruka());
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
-
+    
     @Override
     public void napuniView() {
         var e = obrada.getEntitet();
         txtIme.setText(e.getIme());
         txtPrezime.setText(e.getPrezime());
-        txtOib.setText(e.getOib());
+        txtOIB.setText(e.getOib());
         txtEmail.setText(e.getEmail());
-       txtIban.setText(e.getIban());
+        txtIban.setText(e.getIban());
     }
-
+    
     @Override
     public void napuniModel() {
         var e = obrada.getEntitet();
         e.setIme(txtIme.getText());
         e.setPrezime(txtPrezime.getText());
-        e.setOib(txtOib.getText());
-        e.setEmail(txtIban.getText());
-       
+        e.setOib(txtOIB.getText());
+        e.setEmail(txtEmail.getText());
+        e.setIban(txtIban.getText());
     }
 
-    /**
-     * @param args the command line arguments
-     */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
-    private javax.swing.JButton btnDovuciOib;
+    private javax.swing.JButton btnDovuciOIB;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JLabel jLabel1;
@@ -315,9 +311,7 @@ implements EdunovaViewSucelje{
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIban;
     private javax.swing.JTextField txtIme;
-    private javax.swing.JTextField txtOib;
+    private javax.swing.JTextField txtOIB;
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
-
-   
 }

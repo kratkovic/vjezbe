@@ -5,8 +5,10 @@
 package edunova.view;
 
 import edunova.controller.ObradaGrupa;
+import edunova.controller.ObradaPredavac;
 import edunova.controller.ObradaSmjer;
 import edunova.model.Grupa;
+import edunova.model.Predavac;
 import edunova.model.Smjer;
 import edunova.util.Aplikacija;
 import javax.swing.DefaultComboBoxModel;
@@ -14,12 +16,14 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Kiki
+ * @author dell
  */
-public class ProzorGrupa extends javax.swing.JFrame 
-implements EdunovaViewSucelje{
-
+public class ProzorGrupa 
+        extends javax.swing.JFrame
+        implements EdunovaViewSucelje{
+    
     private ObradaGrupa obrada;
+
     /**
      * Creates new form ProzorGrupa
      */
@@ -29,17 +33,46 @@ implements EdunovaViewSucelje{
          setTitle(Aplikacija.NAZIV_APP + ": " + 
                 Aplikacija.OPERATER.getImePrezime() + 
                 ": Grupe");
-        ucitaj();
+        ucitajFilterSmjerovi();
+        ucitajSmjerove();
+        ucitajPredavace();
+         ucitaj();
     }
-
-    private void ucitajFilerSmjerovi(){
-        DefaultComboBoxModel<Smjer> m = new DefaultComboBoxModel<>();
+    
+    private void ucitajSmjerove(){
+        DefaultComboBoxModel<Smjer> m
+                = new DefaultComboBoxModel<>();
         Smjer s = new Smjer();
         s.setSifra(0);
+        s.setNaziv("Nije odabrano");
+        m.addElement(s);
         m.addAll(new ObradaSmjer().read());
         cmbSmjerovi.setModel(m);
-                
+        cmbSmjerovi.repaint();
     }
+    
+    private void ucitajPredavace(){
+        DefaultComboBoxModel<Predavac> m
+                = new DefaultComboBoxModel<>();
+        Predavac p = new Predavac();
+        p.setSifra(0);
+        p.setIme("Nije");
+        p.setPrezime("odabrano");
+        m.addElement(p);
+        m.addAll(new ObradaPredavac().read());
+        cmbPredavaci.setModel(m);
+        cmbPredavaci.repaint();
+    }
+    
+    private void ucitajFilterSmjerovi(){
+        DefaultComboBoxModel<Smjer> m
+                = new DefaultComboBoxModel<>();
+        m.addAll(new ObradaSmjer().read());
+        cmbFilterSmjerovi.setModel(m);
+        cmbFilterSmjerovi.repaint();
+        cmbFilterSmjerovi.setSelectedIndex(0);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,12 +85,12 @@ implements EdunovaViewSucelje{
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
         cmbFilterSmjerovi = new javax.swing.JComboBox<>();
-        txtNaziv = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txtNaziv = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cmbSmjerovi = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        cmbSmjerovi1 = new javax.swing.JComboBox<>();
+        cmbPredavaci = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,11 +102,17 @@ implements EdunovaViewSucelje{
         });
         jScrollPane1.setViewportView(lstPodaci);
 
+        cmbFilterSmjerovi.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFilterSmjeroviItemStateChanged(evt);
+            }
+        });
+
         jLabel1.setText("Naziv");
 
         jLabel2.setText("Smjer");
 
-        jLabel3.setText("Smjer");
+        jLabel3.setText("Predavač");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,39 +121,40 @@ implements EdunovaViewSucelje{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbFilterSmjerovi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(cmbFilterSmjerovi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
-                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(cmbSmjerovi, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbSmjerovi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3)
-                    .addComponent(cmbSmjerovi1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbPredavaci, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(cmbFilterSmjerovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbSmjerovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbSmjerovi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbSmjerovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbPredavaci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbFilterSmjerovi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,41 +175,43 @@ implements EdunovaViewSucelje{
 
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    /**
-     * @param args the command line arguments
-     */
-   
-   
+    private void cmbFilterSmjeroviItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFilterSmjeroviItemStateChanged
+        ucitaj();
+    }//GEN-LAST:event_cmbFilterSmjeroviItemStateChanged
+
+
 
     @Override
     public void ucitaj() {
         DefaultListModel<Grupa> m = 
-        new DefaultListModel<>();
-        m.addAll(obrada.read());
-        
+                new DefaultListModel<>();
+        m.addAll(obrada.read((Smjer)cmbFilterSmjerovi.getSelectedItem()));
         lstPodaci.setModel(m);
         lstPodaci.repaint();
     }
 
     @Override
     public void napuniView() {
-       var e = obrada.getEntitet();
-       tx
+        var e = obrada.getEntitet();
+        txtNaziv.setText(e.getNaziv());
+        cmbSmjerovi.setSelectedItem(e.getSmjer());
+        if(e.getPredavac()!=null){
+            cmbPredavaci.setSelectedItem(e.getPredavac());
+        }else{
+            cmbPredavaci.setSelectedIndex(0);
+        }
+        
     }
 
     @Override
     public void napuniModel() {
-       
-    }
-    }
-
-   
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Smjer> cmbFilterSmjerovi;
+    private javax.swing.JComboBox<Predavac> cmbPredavaci;
     private javax.swing.JComboBox<Smjer> cmbSmjerovi;
-    private javax.swing.JComboBox<Smjer> cmbSmjerovi1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

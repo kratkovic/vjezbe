@@ -6,12 +6,12 @@ package edunova.view;
 
 /**
  *
- * @author Kiki
+ * @author dell
  */
 public interface EdunovaViewSucelje {
     
-   public void ucitaj(); 
-   public void napuniView();
-   public void napuniModel();
+    public void ucitaj();
+    public void napuniView();
+    public void napuniModel();
     
 }

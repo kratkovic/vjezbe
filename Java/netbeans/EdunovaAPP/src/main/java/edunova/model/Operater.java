@@ -25,6 +25,4 @@ public class Operater extends Osoba{
         this.lozinka = lozinka;
     }
     
-    
-    
 }

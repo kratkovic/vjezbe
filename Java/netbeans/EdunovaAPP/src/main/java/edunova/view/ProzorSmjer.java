@@ -20,7 +20,9 @@ import javax.swing.JOptionPane;
  *
  * @author dell
  */
-public class ProzorSmjer extends javax.swing.JFrame implements EdunovaViewSucelje{
+public class ProzorSmjer 
+        extends javax.swing.JFrame
+        implements EdunovaViewSucelje{
 
     private ObradaSmjer obrada;
     private DecimalFormat df;
@@ -42,6 +44,7 @@ public class ProzorSmjer extends javax.swing.JFrame implements EdunovaViewSucelj
         ucitaj();
     }
     
+    @Override
     public void ucitaj(){
         DefaultListModel<Smjer> m = 
                 new DefaultListModel<>();

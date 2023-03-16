@@ -58,7 +58,9 @@ public abstract class Osoba extends Entitet {
 	public String toString() {
 		return ime + " " + prezime;
 	}
- public String getImePrezime(){
-     return ime + " " + prezime;
- }
+        
+        public String getImePrezime(){
+            return ime + " " + prezime;
+        }
+
 }

@@ -13,7 +13,13 @@ import java.awt.event.KeyEvent;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSucelje{
+/**
+ *
+ * @author dell
+ */
+public class ProzorPolaznik 
+        extends javax.swing.JFrame
+        implements EdunovaViewSucelje{
 
     private ObradaPolaznik obrada;
 
@@ -35,17 +41,16 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
         var e = obrada.getEntitet();
         txtIme.setText(e.getIme());
         txtPrezime.setText(e.getPrezime());
-        txtOib.setText(e.getOib());
+        txtOIB.setText(e.getOib());
         txtEmail.setText(e.getEmail());
         txtBrojUgovora.setText(e.getBrojUgovora());
-
     }
 
     public void napuniModel() {
         var e = obrada.getEntitet();
         e.setIme(txtIme.getText());
         e.setPrezime(txtPrezime.getText());
-        e.setOib(txtOib.getText());
+        e.setOib(txtOIB.getText());
         e.setEmail(txtEmail.getText());
         e.setBrojUgovora(txtBrojUgovora.getText());
     }
@@ -80,7 +85,7 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
         jLabel2 = new javax.swing.JLabel();
         txtPrezime = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtOib = new javax.swing.JTextField();
+        txtOIB = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -88,7 +93,7 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
-        btnDovuciOib = new javax.swing.JButton();
+        btnDovuciOIB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -123,7 +128,7 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
 
         jLabel4.setText("Email");
 
-        jLabel5.setText("Broj Ugovora");
+        jLabel5.setText("Broj ugovora");
 
         btnDodaj.setText("Dodaj");
         btnDodaj.addActionListener(new java.awt.event.ActionListener() {
@@ -139,17 +144,17 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
             }
         });
 
-        btnObrisi.setText("Obrisi");
+        btnObrisi.setText("Obriši");
         btnObrisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnObrisiActionPerformed(evt);
             }
         });
 
-        btnDovuciOib.setText("O");
-        btnDovuciOib.addActionListener(new java.awt.event.ActionListener() {
+        btnDovuciOIB.setText("O");
+        btnDovuciOIB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDovuciOibActionPerformed(evt);
+                btnDovuciOIBActionPerformed(evt);
             }
         });
 
@@ -168,43 +173,41 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
                     .addComponent(chbTraziOdPocetkaImena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIme)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel1))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txtPrezime)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(167, 167, 167))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtBrojUgovora, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnDovuciOib))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDodaj)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPromjeni)))
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtIme))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(btnObrisi)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(165, 165, 165))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5)
+                                .addComponent(txtBrojUgovora, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnPromjeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtOIB)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnDovuciOIB, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap())
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +222,7 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
                     .addComponent(chbTraziOdPocetkaImena)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -229,8 +232,8 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtOib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDovuciOib))
+                            .addComponent(txtOIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDovuciOIB))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,10 +243,10 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBrojUgovora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnPromjeni)
-                            .addComponent(btnDodaj))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDodaj)
+                            .addComponent(btnPromjeni))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnObrisi)))
                 .addContainerGap())
         );
@@ -288,13 +291,13 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        if (lstPodaci.getSelectedValue() == null) {
+         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(
-                    getRootPane(),
+                    getRootPane(), 
                     "Prvo odaberite polaznika");
             return;
         }
-
+        
         napuniModel();
         try {
             obrada.update();
@@ -308,22 +311,22 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        if (lstPodaci.getSelectedValue() == null) {
+         if(lstPodaci.getSelectedValue()==null){
             JOptionPane.showMessageDialog(
-                    getRootPane(),
-                    "Prvo odaberite smjer");
+                    getRootPane(), 
+                    "Prvo odaberite polaznik");
             return;
         }
-
-        if (JOptionPane.showConfirmDialog(
+        
+        if(JOptionPane.showConfirmDialog(
                 getRootPane(),
                 "Sigurno obrisati " + obrada.getEntitet().getImePrezime() + "?",
                 "Brisanje",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE) == JOptionPane.NO_OPTION) {
+                JOptionPane.QUESTION_MESSAGE)==JOptionPane.NO_OPTION){
             return;
         }
-
+        
         try {
             obrada.delete();
             ucitaj();
@@ -334,14 +337,14 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
         }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
-    private void btnDovuciOibActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDovuciOibActionPerformed
-        txtOib.setText(Alati.dovuciOib());
-    }//GEN-LAST:event_btnDovuciOibActionPerformed
+    private void btnDovuciOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDovuciOIBActionPerformed
+        txtOIB.setText(Alati.dovuciOib());
+    }//GEN-LAST:event_btnDovuciOIBActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
-    private javax.swing.JButton btnDovuciOib;
+    private javax.swing.JButton btnDovuciOIB;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JButton btnTrazi;
@@ -356,7 +359,7 @@ public class ProzorPolaznik extends javax.swing.JFrame implements EdunovaViewSuc
     private javax.swing.JTextField txtBrojUgovora;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIme;
-    private javax.swing.JTextField txtOib;
+    private javax.swing.JTextField txtOIB;
     private javax.swing.JTextField txtPrezime;
     private javax.swing.JTextField txtUvjet;
     // End of variables declaration//GEN-END:variables
