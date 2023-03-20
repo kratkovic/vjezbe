@@ -40,6 +40,12 @@ public class Polaznik extends Osoba {
         this.grupe = grupe;
     }
         
+    
+    @Override
+	public String toString() {
+		return getIme() + " " + getPrezime() + ", " + getOib();
+	}
+        
         
 	
 }

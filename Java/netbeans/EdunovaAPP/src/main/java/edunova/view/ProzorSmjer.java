@@ -16,7 +16,10 @@ import java.util.Locale;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author dell
+ */
 public class ProzorSmjer 
         extends javax.swing.JFrame
         implements EdunovaViewSucelje{

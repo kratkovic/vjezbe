@@ -24,7 +24,7 @@ public class ObradaPolaznik extends ObradaOsoba<Polaznik>{
         uvjet=uvjet.trim();
         uvjet = "%" + uvjet + "%";
        return session.createQuery("from Polaznik "
-               + " where concat(ime,' ',prezime,' ',ime) "
+               + " where concat(ime,' ',prezime,' ',ime, ' ', oib) "
                + " like :uvjet "
                + " order by prezime, ime ", 
                Polaznik.class)

@@ -11,7 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author dell
+ */
 public class ProzorIzbornik extends javax.swing.JFrame {
 
     /**

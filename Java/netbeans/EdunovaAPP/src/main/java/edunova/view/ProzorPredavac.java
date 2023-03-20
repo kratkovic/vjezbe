@@ -12,7 +12,10 @@ import edunova.util.EdunovaException;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author dell
+ */
 public class ProzorPredavac
         extends javax.swing.JFrame
         implements EdunovaViewSucelje {
