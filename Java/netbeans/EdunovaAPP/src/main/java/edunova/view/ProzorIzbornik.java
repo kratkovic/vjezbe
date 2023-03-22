@@ -4,12 +4,25 @@
  */
 package edunova.view;
 
+import edunova.controller.ObradaGrupa;
+import edunova.controller.ObradaSmjer;
+import edunova.model.Grupa;
+import edunova.model.Smjer;
 import edunova.util.Aplikacija;
+import edunova.util.HibernateUtil;
+import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.hibernate.Session;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -22,17 +35,81 @@ public class ProzorIzbornik extends javax.swing.JFrame {
      */
     public ProzorIzbornik() {
         initComponents();
-        setTitle(Aplikacija.NAZIV_APP + ": " + 
-                Aplikacija.OPERATER.getImePrezime());
-       pokreniSat();
-        
+        setTitle(Aplikacija.NAZIV_APP + ": "
+                + Aplikacija.OPERATER.getImePrezime());
+        pokreniSat();
+        definirajGraf();
+
     }
-    
-    private void pokreniSat(){
+   
+
+    private void definirajGraf() {
+
+    Session session = HibernateUtil.getSession();
+    List<Object[]> results = session.createNativeQuery(
+        "select a.naziv, count(c.polaznik) as broj " +
+        "from smjer a " +
+        "inner join grupa b on a.sifra = b.smjer_sifra " +
+        "inner join clan c on b.sifra = c.grupa " +
+        "group by a.naziv"
+    ).list();
+
+    List<GrafPodaci> lista = new ArrayList<>();
+
+    for (Object[] row : results) {
+        String naziv = (String) row[0];
+        int broj = ((Number) row[1]).intValue();
+        GrafPodaci grafPodaci = new GrafPodaci(naziv, (double) broj);
+        lista.add(grafPodaci);
+    }
+
+    DefaultPieDataset dataset = new DefaultPieDataset();
+
+    for (GrafPodaci gp : lista) {
+        dataset.setValue(gp.getNaziv() + "(" + gp.getBroj() + ")", gp.getBroj());
+    }
+
+    JFreeChart chart = ChartFactory.createPieChart(
+        "Statistika smjerova", // chart title 
+        dataset, // data    
+        false, // include legend   
+        false,
+        false
+    );
+
+    ChartPanel cp = new ChartPanel(chart);
+
+    pnlGraf.setLayout(new BorderLayout());
+    pnlGraf.add(cp, BorderLayout.CENTER);
+    pnlGraf.validate();
+}
+
+private class GrafPodaci {
+
+    private String naziv;
+    private double broj;
+
+    public GrafPodaci(String naziv, double broj) {
+        this.naziv = naziv;
+        this.broj = broj;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public double getBroj() {
+        return broj;
+    }
+
+}
+
+
+    private void pokreniSat() {
         new Vrijeme().start();
     }
-    
-    private class Vrijeme extends Thread{
+
+    private class Vrijeme extends Thread {
 
         private SimpleDateFormat df;
 
@@ -40,23 +117,21 @@ public class ProzorIzbornik extends javax.swing.JFrame {
             df = new SimpleDateFormat(
                     "dd.MM.YYYY. hh:mm:ss");
         }
-        
-        
-        
+
         @Override
         public void run() {
-              while(true){
-            lblVrijeme.setText(
-            df.format(new Date())
-            );
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                
+            while (true) {
+                lblVrijeme.setText(
+                        df.format(new Date())
+                );
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+
+                }
             }
         }
-        }
-        
+
     }
 
     /**
@@ -70,6 +145,7 @@ public class ProzorIzbornik extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
+        pnlGraf = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -85,6 +161,17 @@ public class ProzorIzbornik extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
         jToolBar1.add(lblVrijeme);
+
+        javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
+        pnlGraf.setLayout(pnlGrafLayout);
+        pnlGrafLayout.setHorizontalGroup(
+            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlGrafLayout.setVerticalGroup(
+            pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 229, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Aplikacija");
 
@@ -158,11 +245,17 @@ public class ProzorIzbornik extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 256, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -175,7 +268,7 @@ public class ProzorIzbornik extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        
+
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -215,5 +308,6 @@ public class ProzorIzbornik extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblVrijeme;
+    private javax.swing.JPanel pnlGraf;
     // End of variables declaration//GEN-END:variables
 }
