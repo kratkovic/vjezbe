@@ -8,10 +8,7 @@ import edunova.model.Osoba;
 import edunova.util.Alati;
 import edunova.util.EdunovaException;
 
-/**
- *
- * @author dell
- */
+
 public abstract class ObradaOsoba<T extends Osoba> extends Obrada<T>{
 
     @Override
