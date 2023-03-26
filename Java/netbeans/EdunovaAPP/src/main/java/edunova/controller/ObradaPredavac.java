@@ -8,10 +8,7 @@ import edunova.model.Predavac;
 import edunova.util.EdunovaException;
 import java.util.List;
 
-/**
- *
- * @author dell
- */
+
 public class ObradaPredavac extends ObradaOsoba<Predavac>{
 
     @Override
