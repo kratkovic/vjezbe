@@ -10,7 +10,10 @@ import edunova.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
-
+/**
+ *
+ * @author dell
+ */
 public abstract class Obrada<T extends Entitet> {
 
     protected T entitet;

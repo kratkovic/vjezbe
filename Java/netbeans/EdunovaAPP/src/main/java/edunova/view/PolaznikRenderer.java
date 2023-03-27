@@ -11,7 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-
+/**
+ *
+ * @author dell
+ */
 // https://www.codejava.net/java-se/swing/jlist-custom-renderer-example
 public class PolaznikRenderer extends JLabel implements ListCellRenderer<Polaznik> {
 

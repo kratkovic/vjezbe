@@ -4,10 +4,12 @@
  */
 package edunova.controller;
 
+import edunova.model.GrafPodaci;
 import edunova.model.Grupa;
 import edunova.model.Smjer;
 import edunova.util.EdunovaException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +18,27 @@ import java.util.List;
  */
 public class ObradaSmjer extends Obrada<Smjer>{
 
+     public List<GrafPodaci> getGrafPodaci(){
+        List<GrafPodaci> l = new ArrayList<>();
+        // preraditi na listu Grafpodaci
+         List<Object[]> lista =  session.createNativeQuery(
+                 " select a.naziv, count(c.polaznik) as broj " +
+                            " from smjer a inner join grupa b " +
+                            " on a.sifra =b.smjer_sifra " +
+                            " inner join clan c on b.sifra =c.grupa " +
+                            " group by a.naziv ",Object[].class
+                 ).getResultList();
+       
+         GrafPodaci gf;
+         for(Object[] niz : lista){
+            gf = new GrafPodaci();
+            gf.setNaziv(niz[0].toString());
+            gf.setBroj(Integer.valueOf(niz[1].toString()));
+            l.add(gf);
+         }
+        
+        return l;
+    }
     @Override
     public List<Smjer> read() {
         // https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html

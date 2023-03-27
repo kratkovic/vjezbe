@@ -6,13 +6,16 @@ package edunova.view;
 
 import edunova.controller.ObradaGrupa;
 import edunova.controller.ObradaSmjer;
+import edunova.model.GrafPodaci;
 import edunova.model.Grupa;
 import edunova.model.Smjer;
 import edunova.util.Aplikacija;
 import edunova.util.HibernateUtil;
+import jakarta.persistence.EntityResult;
+import jakarta.persistence.FieldResult;
+import jakarta.persistence.SqlResultSetMapping;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -33,81 +36,50 @@ public class ProzorIzbornik extends javax.swing.JFrame {
      */
     public ProzorIzbornik() {
         initComponents();
-        setTitle(Aplikacija.NAZIV_APP + ": "
-                + Aplikacija.OPERATER.getImePrezime());
-        pokreniSat();
-        definirajGraf();
-
+        setTitle(Aplikacija.NAZIV_APP + ": " + 
+                Aplikacija.OPERATER.getImePrezime());
+       pokreniSat();
+       definirajGraf();
+        
     }
-   
-
-    private void definirajGraf() {
-
-    Session session = HibernateUtil.getSession();
-    List<Object[]> results = session.createNativeQuery(
-        "select a.naziv, count(c.polaznik) as broj " +
-        "from smjer a " +
-        "inner join grupa b on a.sifra = b.smjer_sifra " +
-        "inner join clan c on b.sifra = c.grupa " +
-        "group by a.naziv"
-    ).list();
-
-    List<GrafPodaci> lista = new ArrayList<>();
-
-    for (Object[] row : results) {
-        String naziv = (String) row[0];
-        int broj = ((Number) row[1]).intValue();
-        GrafPodaci grafPodaci = new GrafPodaci(naziv, (double) broj);
-        lista.add(grafPodaci);
+  
+    
+     private void definirajGraf(){
+         
+         
+          DefaultPieDataset dataset = new DefaultPieDataset( );
+         
+         for(GrafPodaci gp : new ObradaSmjer().getGrafPodaci()){
+            
+             dataset.setValue(gp.getNaziv() + " (" + gp.getBroj() + ")", 
+                     Double.valueOf(gp.getBroj()));
+           //  System.out.println(g.getNaziv() 
+            // + ": " + g.getPolaznici().size());
+         }
+         
+          JFreeChart chart = ChartFactory.createPieChart(      
+         "Statistika smjerova",   // chart title 
+         dataset,          // data    
+         false,             // include legend   
+         false, 
+         false);
+          
+          ChartPanel cp = new ChartPanel(chart);
+          
+          pnlGraf.setLayout(new BorderLayout());
+          pnlGraf.add(cp,BorderLayout.CENTER);
+          pnlGraf.validate();
+         
+         
     }
-
-    DefaultPieDataset dataset = new DefaultPieDataset();
-
-    for (GrafPodaci gp : lista) {
-        dataset.setValue(gp.getNaziv() + "(" + gp.getBroj() + ")", gp.getBroj());
-    }
-
-    JFreeChart chart = ChartFactory.createPieChart(
-        "Statistika smjerova", // chart title 
-        dataset, // data    
-        false, // include legend   
-        false,
-        false
-    );
-
-    ChartPanel cp = new ChartPanel(chart);
-
-    pnlGraf.setLayout(new BorderLayout());
-    pnlGraf.add(cp, BorderLayout.CENTER);
-    pnlGraf.validate();
-}
-
-private class GrafPodaci {
-
-    private String naziv;
-    private double broj;
-
-    public GrafPodaci(String naziv, double broj) {
-        this.naziv = naziv;
-        this.broj = broj;
-    }
-
-    public String getNaziv() {
-        return naziv;
-    }
-
-    public double getBroj() {
-        return broj;
-    }
-
-}
-
-
-    private void pokreniSat() {
+     
+    
+    
+    private void pokreniSat(){
         new Vrijeme().start();
     }
-
-    private class Vrijeme extends Thread {
+    
+    private class Vrijeme extends Thread{
 
         private SimpleDateFormat df;
 
@@ -115,21 +87,23 @@ private class GrafPodaci {
             df = new SimpleDateFormat(
                     "dd.MM.YYYY. hh:mm:ss");
         }
-
+        
+        
+        
         @Override
         public void run() {
-            while (true) {
-                lblVrijeme.setText(
-                        df.format(new Date())
-                );
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ex) {
-
-                }
+              while(true){
+            lblVrijeme.setText(
+            df.format(new Date())
+            );
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                
             }
         }
-
+        }
+        
     }
 
     /**
@@ -143,6 +117,7 @@ private class GrafPodaci {
 
         jToolBar1 = new javax.swing.JToolBar();
         lblVrijeme = new javax.swing.JLabel();
+        btnTest = new javax.swing.JButton();
         pnlGraf = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -160,15 +135,22 @@ private class GrafPodaci {
         jToolBar1.setRollover(true);
         jToolBar1.add(lblVrijeme);
 
+        btnTest.setText("Test");
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlGrafLayout = new javax.swing.GroupLayout(pnlGraf);
         pnlGraf.setLayout(pnlGrafLayout);
         pnlGrafLayout.setHorizontalGroup(
             pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
         pnlGrafLayout.setVerticalGroup(
             pnlGrafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 229, Short.MAX_VALUE)
+            .addGap(0, 215, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Aplikacija");
@@ -245,15 +227,19 @@ private class GrafPodaci {
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlGraf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTest, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
+                .addComponent(btnTest)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlGraf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -266,7 +252,7 @@ private class GrafPodaci {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-
+        
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -292,8 +278,13 @@ private class GrafPodaci {
         new ProzorGrupa().setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+new ProzorTest().setVisible(true);
+    }//GEN-LAST:event_btnTestActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTest;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
