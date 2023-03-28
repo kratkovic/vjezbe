@@ -105,6 +105,11 @@ public class ProzorPolaznik
         });
         jScrollPane1.setViewportView(lstPodaci);
 
+        txtUvjet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUvjetActionPerformed(evt);
+            }
+        });
         txtUvjet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUvjetKeyPressed(evt);
@@ -340,6 +345,10 @@ public class ProzorPolaznik
     private void btnDovuciOIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDovuciOIBActionPerformed
         txtOIB.setText(Alati.dovuciOib());
     }//GEN-LAST:event_btnDovuciOIBActionPerformed
+
+    private void txtUvjetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUvjetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUvjetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
