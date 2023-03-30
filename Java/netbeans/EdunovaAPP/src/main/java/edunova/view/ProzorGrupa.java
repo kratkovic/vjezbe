@@ -26,10 +26,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author dell
- */
+
 public class ProzorGrupa 
         extends javax.swing.JFrame
         implements EdunovaViewSucelje{
