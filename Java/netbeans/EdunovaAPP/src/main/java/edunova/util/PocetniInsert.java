@@ -47,6 +47,8 @@ public class PocetniInsert {
         kreirajGrupe();
         session.getTransaction().commit();
     }
+    
+  
 
     private void kreirajSmjerove() {
         Smjer s;

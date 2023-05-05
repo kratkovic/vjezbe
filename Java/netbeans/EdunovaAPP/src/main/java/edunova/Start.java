@@ -9,12 +9,15 @@ import edunova.view.SplashScreen;
 
 
 
-
+/**
+ *
+ * @author dell
+ */
 public class Start {
 
     // za ORM generalno čitati https://github.com/tjakopec/ORM_JAVA_PHP_CSHARP
     public static void main(String[] args) {
       new SplashScreen().setVisible(true);
-      //  new PocetniInsert();
+      //new PocetniInsert();
     }
 }

@@ -9,10 +9,7 @@ import edunova.model.Operater;
 import edunova.util.Aplikacija;
 import java.awt.event.KeyEvent;
 
-/**
- *
- * @author dell
- */
+
 public class ProzorLogin extends javax.swing.JFrame {
 
     private ObradaOperater obrada;

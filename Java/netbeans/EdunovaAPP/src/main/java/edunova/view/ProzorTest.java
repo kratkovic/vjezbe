@@ -4,6 +4,19 @@
  */
 package edunova.view;
 
+import com.github.lgooddatepicker.components.DatePickerSettings;
+import com.github.lgooddatepicker.optionalusertools.DateHighlightPolicy;
+import com.github.lgooddatepicker.optionalusertools.DateVetoPolicy;
+import com.github.lgooddatepicker.zinternaltools.DateVetoPolicyMinimumMaximumDate;
+import com.github.lgooddatepicker.zinternaltools.HighlightInformation;
+import java.awt.Color;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +30,91 @@ public class ProzorTest extends javax.swing.JFrame {
      */
     public ProzorTest() {
         initComponents();
+        
+        
+        primjerRadaSDateTimePicker();
+        primjerRadaSKalendarPanelom();
+        
     }
+    
+    private void primjerRadaSDateTimePicker(){
+         DatePickerSettings dps = 
+                new DatePickerSettings(new Locale("hr","HR"));
+       
+       cpnlKalendar.setSettings(dps);
+       
+       dps.setFormatForDatesCommonEra("dd. MM. YYYY.");
+       dps.setTranslationClear("Očisti");
+       dps.setTranslationToday("Danas");
+      dps.setAllowKeyboardEditing(false);
+	dps.setWeekNumbersDisplayed(true, true);
+	dps.setHighlightPolicy(new DailyTableHighLightPolicy());
+	dps.setVisibleClearButton(false);		
+	dps.setVetoPolicy(new MyDateVetoPolicy());
+        
+        cpnlKalendar.drawCalendar();
+       
+       
+               
+    }
+    
+      private void primjerRadaSKalendarPanelom(){
+         DatePickerSettings dps = 
+                new DatePickerSettings(new Locale("hr","HR"));
+       dps.setFormatForDatesCommonEra("dd. MM. YYYY.");
+       dps.setTranslationClear("Očisti");
+       dps.setTranslationToday("Danas");
+      
+       cpnlKalendar.setSettings(dps);
+       
+       
+       
+    }
+      
+      
+      
+
+private static class MyDateVetoPolicy implements DateVetoPolicy {
+
+	@Override
+	// Only allowed within period [now - 100days, to now + 100days]
+	public boolean isDateAllowed(LocalDate date) {
+		System.out.println("Checking allowed: " + date.toString());
+		
+		LocalDate now = LocalDate.now();
+		if (date.isBefore(now.minusDays(10))) {
+			return false;
+		}			
+		else if (date.isAfter(now.plusDays(10))) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+}
+
+private static class DailyTableHighLightPolicy implements DateHighlightPolicy {
+
+	@Override
+	// days should be painted red and green, in a chess board style
+	public HighlightInformation getHighlightInformationOrNull(LocalDate date) {
+		System.out.println("Checking status: " + date.toString());
+		
+		// On even day numbers it is red, otherwise green
+		int remainder =  date.getDayOfMonth() % 2;
+
+		if (remainder == 0) {
+			return new HighlightInformation(Color.red, null, "red");
+		}
+		else {
+			return new HighlightInformation(Color.green, null, "green");
+	    }
+	}
+}
+      
+      
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,6 +127,9 @@ public class ProzorTest extends javax.swing.JFrame {
 
         cmbPozicije = new javax.swing.JComboBox<>();
         btnStoJeOdabrano = new javax.swing.JButton();
+        dtpPocetak = new com.github.lgooddatepicker.components.DateTimePicker();
+        btnZapisiVrijeme = new javax.swing.JButton();
+        cpnlKalendar = new com.github.lgooddatepicker.components.CalendarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -42,6 +142,13 @@ public class ProzorTest extends javax.swing.JFrame {
             }
         });
 
+        btnZapisiVrijeme.setText("Zapiši vrijeme");
+        btnZapisiVrijeme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnZapisiVrijemeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -49,18 +156,37 @@ public class ProzorTest extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbPozicije, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStoJeOdabrano, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(221, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbPozicije, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(dtpPocetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnStoJeOdabrano, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnZapisiVrijeme)
+                        .addGap(15, 15, 15))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(cpnlKalendar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(cmbPozicije, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnStoJeOdabrano)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbPozicije, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtpPocetak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btnStoJeOdabrano))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnZapisiVrijeme)))
+                .addGap(18, 18, 18)
+                .addComponent(cpnlKalendar, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,10 +199,28 @@ public class ProzorTest extends javax.swing.JFrame {
                 );
     }//GEN-LAST:event_btnStoJeOdabranoActionPerformed
 
+    private void btnZapisiVrijemeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnZapisiVrijemeActionPerformed
+        
+        LocalDate ld = dtpPocetak.getDatePicker().getDate();
+        LocalTime lt = dtpPocetak.getTimePicker().getTime();
+        
+        LocalDateTime fromDateAndTime = LocalDateTime.of(ld,
+                                                           lt);
+        
+        Date datum = Date.from(fromDateAndTime.atZone(ZoneId.systemDefault()).toInstant());
+        
+        
+        System.out.println(datum);
+        
+    }//GEN-LAST:event_btnZapisiVrijemeActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStoJeOdabrano;
+    private javax.swing.JButton btnZapisiVrijeme;
     private javax.swing.JComboBox<String> cmbPozicije;
+    private com.github.lgooddatepicker.components.CalendarPanel cpnlKalendar;
+    private com.github.lgooddatepicker.components.DateTimePicker dtpPocetak;
     // End of variables declaration//GEN-END:variables
 }

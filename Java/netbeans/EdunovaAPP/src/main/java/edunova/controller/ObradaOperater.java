@@ -12,7 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
-
+/**
+ *
+ * @author dell
+ */
 public class ObradaOperater extends ObradaOsoba<Operater>{
 
     @Override
