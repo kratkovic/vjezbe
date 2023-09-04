@@ -14,10 +14,7 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author dell
- */
+
 public class Edunova01 {
 
     private String myDriver = "org.mariadb.jdbc.Driver";
